@@ -6,8 +6,12 @@ export const getDecks = () => {
     return AsyncStorage.getItem(MOBILE_FLASHCARDS_KEY)
 }
 
-export const saveDeckTitle = (deck) => {
-   return AsyncStorage.mergeItem(MOBILE_FLASHCARDS_KEY, JSON.stringify(deck))
+export const saveDeckTitle = (title) => {
+    return AsyncStorage.mergeItem(MOBILE_FLASHCARDS_KEY, JSON.stringify({
+        [title]:{
+            title: title
+        }
+    }))
 }
 
 export const getDeck = (id) => {
