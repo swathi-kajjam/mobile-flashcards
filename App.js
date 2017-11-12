@@ -5,6 +5,9 @@ import DeckListView from './components/DeckListView';
 import NewDeckView from './components/NewDeckView';
 import { purple, white } from "./utils/colors";
 import { Constants } from 'expo';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducer from './reducers';
 
 const Tabs = TabNavigator({
     DeckListView: {
@@ -52,10 +55,12 @@ function AppStatusBar({backgroundColor, ...props}){
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <AppStatusBar backgroundColor={purple} barStyle='light-content'/>
-        <Tabs/>
-      </View>
+        <Provider store={createStore(reducer)}>
+          <View style={styles.container}>
+            <AppStatusBar backgroundColor={purple} barStyle='light-content'/>
+            <Tabs/>
+          </View>
+        </Provider>
     );
   }
 }

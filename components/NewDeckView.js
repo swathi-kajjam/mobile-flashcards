@@ -3,6 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import TextButton from './TextButton';
 import AppTextInput from './AppTextInput';
 import { saveDeckTitle } from '../utils/api';
+import { connect } from 'react-redux';
 
 class NewDeckView extends Component{
 
@@ -44,5 +45,5 @@ const styles = StyleSheet.create({
     }
 })
 
-export default NewDeckView;
+export default connect(mapStateToProps)(NewDeckView);
 
