@@ -1,9 +1,13 @@
 import { AsyncStorage } from 'react-native';
+import { formatData } from './_deck';
 
 const MOBILE_FLASHCARDS_KEY = 'UdactiyCards:MobileFlashCards';
 
 export const getDecks = () => {
+    console.log('getDecks called');
+
     return AsyncStorage.getItem(MOBILE_FLASHCARDS_KEY)
+        .then(formatData);
 }
 
 export const saveDeckTitle = (title) => {

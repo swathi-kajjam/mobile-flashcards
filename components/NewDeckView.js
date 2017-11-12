@@ -4,6 +4,7 @@ import TextButton from './TextButton';
 import AppTextInput from './AppTextInput';
 import { saveDeckTitle } from '../utils/api';
 import { connect } from 'react-redux';
+import { createDeck } from '../actions/deckActions';
 
 class NewDeckView extends Component{
 
@@ -13,8 +14,19 @@ class NewDeckView extends Component{
 
     submit=()=>{
         const {title} = this.state;
+
         //add to redux
+        createDeck(title);
+
+        //clear state
+        this.setState({title:''});
+
         //redirect to Deck View
+        this.props.navigation.navigate(
+            'IndividualDeckView',
+            {title}
+        )
+
         //Add to DB via AsyncStorage
         saveDeckTitle(title);
     }
@@ -45,5 +57,6 @@ const styles = StyleSheet.create({
     }
 })
 
-export default connect(mapStateToProps)(NewDeckView);
+
+export default connect()(NewDeckView);
 
