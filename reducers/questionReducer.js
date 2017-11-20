@@ -1,29 +1,37 @@
 import * as ActionTypes from '../actions/actionTypes';
+import { combineReducers } from 'redux';
 
-const initialState = {
-    questions:{
-        byId: {},
-        allIds: []
+
+function addQuestion(state, title, card){
+    const { id } = card
+    const question = {id:id, question:card.question, answer: card.answer}
+    return {
+        ...state,
+        [id]:question
     }
 }
 
-function questionReducer(state= initialState, action){
+const questionById = (state={}, action) =>{
     switch(action.type){
-        case ActionTypes.CREATE_DECK:
-            return {
-                ...state,
-                decks:{
-                    byId:{...state.decks.byId,
-                        [action.title]:{
-                            title: action.title
-                        }
-                    },
-                    allIds:[...state.decks.allIds, action.title]
-                }
-            }
+        case ActionTypes.ADD_CARD_TO_DECK:
+            return addQuestion(state, action.title, action.card)
         default:
             return state;
     }
 }
+
+const allQuestions = (state=[], action) => {
+    switch(action.type){
+        case ActionTypes.ADD_CARD_TO_DECK:
+            return [...state, action.card.id];
+        default:
+            return state;
+    }
+}
+
+const questionReducer = combineReducers({
+    byId: questionById,
+    allIds: allQuestions
+});
 
 export default questionReducer;

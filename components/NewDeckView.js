@@ -16,7 +16,7 @@ class NewDeckView extends Component{
         const {title} = this.state;
 
         //add to redux
-        createDeck(title);
+        this.props.dispatch(createDeck(title));
 
         //clear state
         this.setState({title:''});
@@ -41,8 +41,8 @@ class NewDeckView extends Component{
         return(
             <View style={styles.container}>
                 <Text>What is the title of your new deck?</Text>
-                <AppTextInput onChangeText={this.onChangeText} value={title}/>
-                <TextButton onPress={this.submit}> SUBMIT </TextButton>
+                <AppTextInput name='title' onChangeText={this.onChangeText} value={title}/>
+                <TextButton onPress={this.submit}> CREATE DECK </TextButton>
             </View>
         )
     }
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         flex:1,
         justifyContent: 'center',
         alignItems: 'center'
-    }
+    },
 })
 
 

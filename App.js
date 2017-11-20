@@ -4,6 +4,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 import DeckListView from './components/DeckListView';
 import NewDeckView from './components/NewDeckView';
 import IndividualDeckView from './components/IndividualDeckView';
+import NewQuestionView from './components/NewQuestionView';
 import { purple, white } from "./utils/colors";
 import { Constants } from 'expo';
 import { Provider } from 'react-redux';
@@ -46,12 +47,29 @@ const Tabs = TabNavigator({
         }
     })
 
+
+
 const MainNavigator = StackNavigator({
     Home:{
         screen: Tabs
     },
     IndividualDeckView:{
-        screen: IndividualDeckView
+        screen: IndividualDeckView,
+        navigationOptions:{
+            headerTintColor: white,
+            headerStyle:{
+                backgroundColor: purple
+            }
+        }
+    },
+    NewQuestionView:{
+        screen: NewQuestionView,
+        navigationOptions:{
+            headerTintColor: white,
+            headerStyle:{
+                backgroundColor: purple
+            }
+        }
     }
 })
 

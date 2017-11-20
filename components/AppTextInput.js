@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
     }
 })
 
-export default function AppTextInput({value='', onChangeText, style=''}){
+export default function AppTextInput({value='', name, onChangeText, style=''}){
     return (
-        <TextInput style={[styles.text,style]} value={value} onChangeText={onChangeText}/>
+        <TextInput style={[styles.text,style]} value={value} name={name} onChangeText={onChangeText}/>
     )
 }

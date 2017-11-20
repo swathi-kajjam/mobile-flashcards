@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 import { getDecks } from '../utils/api';
+import { receiveDecks } from '../actions/deckActions';
 import { connect } from 'react-redux';
 import Deck from './Deck';
+import { formatData } from '../utils/helpers';
 
 class DeckListView extends Component{
     state = {
@@ -10,12 +12,12 @@ class DeckListView extends Component{
     }
 
     componentDidMount(){
+       const {dispatch} = this.props;
        getDecks()
-           .then(decks => this.setState({decks}))
+           .then((entries) => dispatch(receiveDecks(entries)))
     }
 
     onPress = (title) => {
-        console.log('pressed'+ title)
         this.props.navigation.navigate(
             'IndividualDeckView',
             {title}
@@ -23,11 +25,11 @@ class DeckListView extends Component{
     }
 
     renderItem = ({item}) =>{
-        return <Deck {...item} onPress={this.onPress} />
+        return <Deck {...item} key={item.title} onPress={this.onPress} />
     }
 
     render(){
-        const {decks} = this.state;
+        const {decks} = this.props;
         return(
             <View style={styles.container}>
                 <FlatList
@@ -46,4 +48,9 @@ const styles = StyleSheet.create({
     }
 })
 
-export default connect()(DeckListView);
+const mapStateToProps = (state) => {
+    return {
+        decks: formatData(state.deckReducer.byId)
+    }
+}
+export default connect(mapStateToProps)(DeckListView);

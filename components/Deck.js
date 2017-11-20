@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Animated} from 'react-native';
 
 class Deck extends Component{
-    state = {
-        title: this.props.title,
-        cardCount: this.props.cardCount
+    constructor(props){
+        super(props);
     }
 
-    onPress = () => {
-        const {title} = this.state;
-        this.props.onPress(title)
+    onPress = (title) => {
+        this.props.onPress(title);
     }
 
     render(){
-        const {title, cardCount} = this.state;
+        const {title, questions} = this.props;
+
         return (
             <View style={styles.container}>
-                <TouchableOpacity style={styles.btn} onPress={this.onPress}>
+                <TouchableOpacity style={styles.btn} onPress={()=>this.onPress(title)}>
                     <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.cardCount}>{cardCount} cards</Text>
+                    <Text style={styles.questionCount}>{questions.length} cards</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -41,11 +40,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
 
     },
-    cardCount:{
+    questionCount:{
         color:'gray',
         justifyContent:'center',
         alignItems:'center'
-    },
+    }
 
 });
 
