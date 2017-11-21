@@ -37,9 +37,9 @@ class IndividualDeckView extends Component{
         return (
             <View style={styles.container}>
                 <Text style={styles.title}> {title}</Text>
-                <Text style={styles.questionCount}> {deck.questions ? deck.questions.length : 0} cards</Text>
-                <TextButton style={styles.addCardBtn} onPress={this.addCard}>Add Card</TextButton>
-                <TextButton style={styles.quizBtn} onPress={this.startQuiz}>Start Quiz</TextButton>
+                <Text style={styles.cardCount}> {deck.questions ? deck.questions.length : 0} cards</Text>
+                <TextButton onPress={this.addCard}>Create New Question</TextButton>
+                <TextButton btnStyle={styles.quizBtn} onPress={this.startQuiz}>Start a Quiz</TextButton>
             </View>
         )
     }
@@ -59,23 +59,21 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor:'white',
+        padding:20
     },
     title:{
         fontWeight: 'bold',
-        fontSize: 22
+        fontSize: 24
     },
-    questionCount:{
+    cardCount:{
         color:'gray',
-        fontSize: 14,
-        margin:10
-    },
-    addCardBtn:{
+        fontSize: 18,
         margin:10
     },
     quizBtn:{
-        backgroundColor:'gray',
-        color:'black'
+        backgroundColor:'gray'
     }
 })
 

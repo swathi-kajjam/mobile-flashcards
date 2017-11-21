@@ -5,16 +5,18 @@ import { gray } from "../utils/colors";
 const styles = StyleSheet.create({
     text:{
         margin: 20,
-        height: 40,
         width: 250,
         borderColor: gray,
         borderWidth: 1,
-        borderRadius: 4
+        borderRadius: 4,
+        padding:5,
+        fontSize:14
     }
 })
 
-export default function AppTextInput({value='', name, onChangeText, style=''}){
+export default function AppTextInput(props){
     return (
-        <TextInput style={[styles.text,style]} value={value} name={name} onChangeText={onChangeText}/>
+        <TextInput  {...props} style={[styles.text,props.style]}
+        />
     )
 }

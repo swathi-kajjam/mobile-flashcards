@@ -103,9 +103,9 @@ class QuizView extends Component{
                     <TouchableOpacity onPress={this.onLinkPress}>
                         <Text style={styles.answer}>{displayQuestion ? 'Answer': 'Question'}</Text>
                     </TouchableOpacity>
-                    <TextButton style={[styles.btn, {backgroundColor:'green'}]} onPress={()=>this.onOptionPress('yes')}>Correct</TextButton>
-                    <TextButton style={[styles.btn, {backgroundColor:'red'}]} onPress={()=>this.onOptionPress('no')}>InCorrect</TextButton>
-                    <TextButton style={[styles.btn, {backgroundColor:'gray'}]} onPress={this.onPressNext}>Next</TextButton>
+                    <TextButton btnStyle={{backgroundColor:'green'}} onPress={()=>this.onOptionPress('yes')}>Correct</TextButton>
+                    <TextButton btnStyle={{backgroundColor:'red'}} onPress={()=>this.onOptionPress('no')}>InCorrect</TextButton>
+                    <TextButton btnStyle={{backgroundColor:'gray'}} onPress={this.onPressNext}>Next</TextButton>
                 </View>
         )
     }
@@ -115,7 +115,8 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        backgroundColor:'white'
     },
     remainingQuestions:{
         alignSelf:'flex-start'
@@ -128,15 +129,6 @@ const styles = StyleSheet.create({
         color:'red',
         fontWeight: 'bold',
         fontSize:20
-    },
-    btn:{
-        margin:10,
-        width:150,
-        borderWidth: 1,
-        borderRadius: 6,
-        padding: 5,
-        paddingLeft: 25,
-        paddingRight: 25
     },
     text:{
         fontWeight:'bold',

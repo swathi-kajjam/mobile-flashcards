@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, StatusBar, Platform } from 'react-native';
+import { StyleSheet, View, StatusBar, Platform, Text } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import DeckListView from './components/DeckListView';
 import NewDeckView from './components/NewDeckView';
@@ -12,7 +12,6 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './reducers';
 import { setLocalNotification } from './utils/helpers';
-
 
 const Tabs = TabNavigator({
     DeckListView: {
@@ -48,6 +47,7 @@ const Tabs = TabNavigator({
             }
         }
     })
+
 
 
 const headerStyle = {

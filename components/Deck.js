@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Animated} from 'react-native';
-import {gray, white} from '../utils/colors';
 
 class Deck extends Component{
     constructor(props){
@@ -15,7 +14,7 @@ class Deck extends Component{
         spinValue.setValue(0);
         //Create Animation effect
         Animated.timing(spinValue, {toValue:1,
-                                    duration:2000,
+                                    duration:1500,
                                     useNativeDriver:true}
                        )
                 .start();
@@ -23,7 +22,7 @@ class Deck extends Component{
         const self = this;
         setTimeout(function(){
             self.props.onPress(title);
-        },1800)
+        },1400)
     }
 
     render(){
@@ -51,7 +50,7 @@ const styles = StyleSheet.create({
         height:100,
         borderBottomWidth: 2,
         borderBottomColor: 'gray',
-        backgroundColor:white
+        backgroundColor: 'white'
     },
     btn:{
         flex:1,

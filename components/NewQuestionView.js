@@ -47,13 +47,26 @@ class NewQuestionView extends Component{
     render(){
         return (
             <View style={styles.container}>
-                <AppTextInput style={styles.text} onChangeText={(text)=>this.onChangeText('question', text)} value={this.state.question}/>
-                <AppTextInput style={styles.text} onChangeText={(text)=>this.onChangeText('answer', text)} value={this.state.answer}/>
+                <AppTextInput placeholder="Enter a Question"
+                              style={{width:330}}
+                              onChangeText={(text)=>this.onChangeText('question', text)}
+                              value={this.state.question}
+                              maxLength = {200}
+                              multiline={true}
+                />
+                <AppTextInput placeholder="Enter Answer"
+                              style={{width:330}}
+                              onChangeText={(text)=>this.onChangeText('answer', text)}
+                              value={this.state.answer}
+                              maxLength = {300}
+                              multiline={true}
+                />
                 <TextButton onPress={this.onPress} >SUBMIT</TextButton>
             </View>
         )
     }
 }
+
 
 const styles = StyleSheet.create({
     container:{

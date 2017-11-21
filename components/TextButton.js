@@ -1,19 +1,30 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
 import { purple, white } from "../utils/colors";
 
 const styles = StyleSheet.create({
-    btn:{
-        padding: 10,
-        backgroundColor: purple,
-        color: white
+    text:{
+        color:'white',
+        textAlign:'center',
+        fontWeight:'bold'
+    },
+    iosBtn:{
+        backgroundColor:purple,
+        borderRadius:7,
+        height:45,
+        width: 250,
+        padding:10,
+        paddingTop:12,
+        margin:10,
+        marginLeft:30,
+        marginRight:30
     }
 })
 
-export default function TextButton({onPress, children, style = {}}){
+export default function TextButton({onPress, children, textStyle = {}, btnStyle={}}){
     return (
-        <TouchableOpacity onPress={onPress}>
-            <Text style={[styles.btn,style]}> {children} </Text>
+        <TouchableOpacity style={[Platform.OS==='ios'? styles.iosBtn : styles.androidBtn, btnStyle]} onPress={onPress}>
+            <Text style={[styles.text, textStyle]}> {children} </Text>
         </TouchableOpacity>
     )
 }
