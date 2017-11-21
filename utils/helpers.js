@@ -50,10 +50,10 @@ export function setLocalNotification(){
 
                             Notifications.cancelAllScheduledNotificationsAsync()
 
-                            //Send Notification at 8:00am
+                            //Send Notification at 6:00pm
                             let tomorrow = new Date()
                             tomorrow.setDate(tomorrow.getDate() + 1)
-                            tomorrow.setHours(8)
+                            tomorrow.setHours(18)
                             tomorrow.setMinutes(0)
 
                             Notifications.scheduleLocalNotificationAsync(
