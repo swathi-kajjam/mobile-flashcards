@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import TextButton from './TextButton';
 import { getDeck } from "../utils/helpers";
 
+/**
+ * @description - Represents individual deck view component
+ * @returns {HTML} - return DOM for displaying deck information along with options to startQuiz / Add Question
+ */
 class IndividualDeckView extends Component{
 
     static navigationOptions = ({navigation}) => {

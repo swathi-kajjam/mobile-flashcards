@@ -14,6 +14,10 @@ const styles = StyleSheet.create({
     }
 })
 
+/**
+ * @description - Represents TextInput Component
+ * @returns {HTML} - return DOM for Text Input
+ */
 export default function AppTextInput(props){
     return (
         <TextInput  {...props} style={[styles.text,props.style]}

@@ -4,6 +4,10 @@ import { AsyncStorage } from 'react-native';
 
 const NOTIFICATION_KEY='MobileFlashCards:Notifications';
 
+/**
+ * @description - Formats data returned from AsyncStorage database
+ * @returns{object} - formats and returns data in a way that is needed for displaying decks in DeckListView
+ */
 export function formatData(data){
    return Object.keys(data).map(key => {
         return {
@@ -13,16 +17,26 @@ export function formatData(data){
     })
 }
 
+/**
+ * @description - gets specific deck information
+ * @returns{object} - returns deck from list of decks
+ */
 export function getDeck(data, title){
     return find(data, {'title': title})
 }
 
+/**
+ * @description - clears the notification
+ */
 export function clearNotification(){
     AsyncStorage.removeItem(NOTIFICATION_KEY)
         .then(Notifications.cancelAllScheduledNotifications)
 }
 
-
+/**
+ * @description - Notification template
+ * @returns{object} - returns the notification template
+ */
 export function createNotification(){
     return {
         title: 'complete the quiz',
@@ -39,6 +53,9 @@ export function createNotification(){
     }
 }
 
+/**
+ * @description - Creates Notification
+ */
 export function setLocalNotification(){
     AsyncStorage.getItem(NOTIFICATION_KEY)
         .then(JSON.parse)

@@ -6,6 +6,10 @@ import { addingCardToDeck } from '../actions/flashCardActions';
 import AppTextInput from './AppTextInput';
 import { addCardToDeck } from '../utils/api';
 
+/**
+ * @description - Represents new question view component which allows to create new flash card
+ * @returns {HTML} - return DOM for creating new question
+ */
 class NewQuestionView extends Component{
     static navigationOptions = {
         title: 'ADD CARD'

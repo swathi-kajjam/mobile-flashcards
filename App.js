@@ -6,7 +6,7 @@ import NewDeckView from './components/NewDeckView';
 import IndividualDeckView from './components/IndividualDeckView';
 import NewQuestionView from './components/NewQuestionView';
 import QuizView from './components/QuizView';
-import { purple, white } from "./utils/colors";
+import { purple, white, lightGray } from "./utils/colors";
 import { Constants } from 'expo';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -45,7 +45,7 @@ const Tabs = TabNavigator({
             },
             style:{
                 height:56,
-                backgroundColor: Platform.OS==='ios'? white: purple,
+                backgroundColor: Platform.OS==='ios'? lightGray: purple,
                 shadowColor: 'rgba(0,0,0,0.24)',
                 shadowOffset:{
                     width:0,

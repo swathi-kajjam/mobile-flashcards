@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
     }
 })
 
+/**
+ * @description - Represents TextButton Component
+ * @returns {HTML} - return DOM for creating TextButton
+ */
 export default function TextButton({onPress, children, textStyle = {}, btnStyle={}}){
     return (
         <TouchableOpacity style={[Platform.OS==='ios'? styles.iosBtn : styles.androidBtn, btnStyle]} onPress={onPress}>

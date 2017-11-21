@@ -3,11 +3,18 @@ import { find } from 'lodash';
 
 const MOBILE_FLASHCARDS_KEY = 'UdactiyCards:MobileFlashCards';
 
+/**
+ * @description - Gets all decks information
+ * @returns{object} - returns all of the decks along with their titles, questions, and answers.
+ */
 export const getDecks = () => {
     return AsyncStorage.getItem(MOBILE_FLASHCARDS_KEY)
         .then(JSON.parse);
 }
 
+/**
+ * @description - takes in a single title argument and add it to the decks.
+ */
 export const saveDeckTitle = (title) => {
      AsyncStorage.mergeItem(MOBILE_FLASHCARDS_KEY, JSON.stringify({
         [title]:{
@@ -17,6 +24,10 @@ export const saveDeckTitle = (title) => {
     }))
 }
 
+/**
+ * @description - Get specific deck information.
+ * @returns{object} - returns the deck associated with given title.
+ */
 export const getDeck = (title) => {
     return AsyncStorage.getItem(MOBILE_FLASHCARDS_KEY)
         .then(results => {
@@ -25,6 +36,9 @@ export const getDeck = (title) => {
         })
 }
 
+/**
+ * @description - Add's the card to the list of questions for the deck with the associated title.
+ */
 export const addCardToDeck = (title, card) => {
     AsyncStorage.getItem(MOBILE_FLASHCARDS_KEY)
         .then(results => {

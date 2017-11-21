@@ -6,6 +6,10 @@ import { connect } from 'react-redux';
 import Deck from './Deck';
 import { formatData } from '../utils/helpers';
 
+/**
+ * @description - Represents deckList component
+ * @returns {HTML} - return DOM for displaying all the decks
+ */
 class DeckListView extends Component{
     state = {
         decks: []

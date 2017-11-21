@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Animated} from 'react-native';
 
+/**
+ * @description - Represents deck component
+ * @returns {HTML} - return DOM for displaying deck
+ */
 class Deck extends Component{
     constructor(props){
         super(props);

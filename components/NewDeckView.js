@@ -6,6 +6,10 @@ import { saveDeckTitle } from '../utils/api';
 import { connect } from 'react-redux';
 import { createDeck } from '../actions/deckActions';
 
+/**
+ * @description - Represents new deck view component which allows to create new Deck
+ * @returns {HTML} - return DOM for creating new Deck
+ */
 class NewDeckView extends Component{
 
     state = {
@@ -40,7 +44,7 @@ class NewDeckView extends Component{
 
         return(
             <View style={styles.container}>
-                <Text>What is the title of your new deck?</Text>
+                <Text style={styles.text}>What is the title of your new deck?</Text>
                 <AppTextInput placeholder="Enter title of deck"
                               name='title'
                               onChangeText={this.onChangeText}
@@ -59,8 +63,13 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'white'
     },
+    text:{
+        fontWeight:'bold',
+        textAlign:'center'
+    }
 })
 
 
