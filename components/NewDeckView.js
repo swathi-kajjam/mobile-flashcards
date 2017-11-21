@@ -41,7 +41,13 @@ class NewDeckView extends Component{
         return(
             <View style={styles.container}>
                 <Text>What is the title of your new deck?</Text>
-                <AppTextInput placeholder="Enter title of deck" name='title' onChangeText={this.onChangeText} value={title}/>
+                <AppTextInput placeholder="Enter title of deck"
+                              name='title'
+                              onChangeText={this.onChangeText}
+                              value={title}
+                              maxLength = {200}
+                              multiline={true}
+                />
                 <TextButton onPress={this.submit}> CREATE DECK </TextButton>
             </View>
         )

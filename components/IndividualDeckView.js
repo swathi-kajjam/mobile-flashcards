@@ -39,7 +39,11 @@ class IndividualDeckView extends Component{
                 <Text style={styles.title}> {title}</Text>
                 <Text style={styles.cardCount}> {deck.questions ? deck.questions.length : 0} cards</Text>
                 <TextButton onPress={this.addCard}>Create New Question</TextButton>
-                <TextButton btnStyle={styles.quizBtn} onPress={this.startQuiz}>Start a Quiz</TextButton>
+                {deck.questions.length > 0 && <TextButton
+                                                    btnStyle={styles.quizBtn}
+                                                    onPress={this.startQuiz}>Start a Quiz
+                                                </TextButton>
+                }
             </View>
         )
     }
