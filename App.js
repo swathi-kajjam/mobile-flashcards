@@ -33,6 +33,16 @@ const Tabs = TabNavigator({
         },
         tabBarOptions:{
             activeTintColor:Platform.OS==='ios'? purple: white,
+            labelStyle: {
+                fontSize: 12,
+                fontWeight:'bold',
+                justifyContent: 'center',
+                alignItems: 'center'
+            },
+            tabStyle: {
+                justifyContent: 'center',
+                alignItems: 'center'
+            },
             style:{
                 height:56,
                 backgroundColor: Platform.OS==='ios'? white: purple,
@@ -42,8 +52,7 @@ const Tabs = TabNavigator({
                     height:3
                 },
                 shadowRadius: 6,
-                shadowOpacity: 1,
-                padding:18
+                shadowOpacity: 1
             }
         }
     })
