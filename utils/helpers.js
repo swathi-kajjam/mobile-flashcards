@@ -43,13 +43,11 @@ export function setLocalNotification(){
     AsyncStorage.getItem(NOTIFICATION_KEY)
         .then(JSON.parse)
         .then((data) => {
-            console.log(data)
             if (data === null) {
                 Permissions.askAsync(Permissions.NOTIFICATIONS)
                     .then(({ status }) => {
                         if (status === 'granted') {
 
-                            console.log(status)
                             Notifications.cancelAllScheduledNotificationsAsync()
 
                             //Send Notification at 8:00am

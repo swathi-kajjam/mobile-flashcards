@@ -21,12 +21,12 @@ class QuizView extends Component{
     }
 
     componentDidMount(){
-        console.log('componentDidMount')
+
         const { title } = this.props;
-        console.log(title)
+
         getDeck(title)
             .then(deck => {
-                console.log(deck)
+
                 const cardCount = deck.questions.length;
 
                 cardCount>0 && this.setState({ deck,
@@ -44,7 +44,7 @@ class QuizView extends Component{
 
     onPressNext=() => {
         let {currentCardNbr, deck} = this.state;
-        console.log({currentCardNbr, length:deck.questions.length})
+
         if(currentCardNbr < deck.questions.length){
             const currentCard = deck.questions[currentCardNbr];
             currentCardNbr = currentCardNbr+1;
@@ -66,7 +66,6 @@ class QuizView extends Component{
 
     displayScore=() => {
         const {totalCards, correctlyAnswered} = this.state;
-        console.log({totalCards, correctlyAnswered})
         return parseInt((correctlyAnswered/totalCards)*100);
     }
 
@@ -89,7 +88,6 @@ class QuizView extends Component{
 
     render(){
         const { currentCard, totalCards, currentCardNbr, displayQuestion, displayScoreCard, correctlyAnswered } = this.state;
-        console.log(displayQuestion)
         return(
             displayScoreCard ?
                 <View style={styles.container}>
@@ -147,7 +145,6 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state, {navigation}) => {
-    console.log('mapStateToProps')
     const {title} = navigation.state.params;
     return {
         title
