@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { getDeck } from '../utils/api';
 import { connect } from 'react-redux';
 import TextButton from './TextButton';
+import { clearNotification, setLocalNotification } from '../utils/helpers';
 
 class QuizView extends Component{
     static navigationOptions = {
@@ -50,7 +51,9 @@ class QuizView extends Component{
             this.setState({currentCardNbr, currentCard, displayQuestion:true})
         }
         else{
-            this.setState({displayScoreCard:true})
+            this.setState({displayScoreCard:true});
+            clearNotification();
+            setLocalNotification();
         }
     }
 

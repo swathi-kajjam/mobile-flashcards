@@ -11,6 +11,7 @@ import { Constants } from 'expo';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './reducers';
+import { setLocalNotification } from './utils/helpers';
 
 
 const Tabs = TabNavigator({
@@ -84,6 +85,11 @@ function AppStatusBar({backgroundColor, ...props}){
 
 
 export default class App extends React.Component {
+
+  componentDidMount(){
+      setLocalNotification()
+  }
+
   render() {
     return (
         <Provider store={createStore(reducer)}>
