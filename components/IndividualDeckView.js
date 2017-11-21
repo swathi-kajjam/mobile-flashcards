@@ -23,7 +23,12 @@ class IndividualDeckView extends Component{
     }
 
     startQuiz=()=>{
+        const {title}= this.props;
 
+        this.props.navigation.navigate(
+            'QuizView',
+            {title}
+        )
     }
 
     render(){
