@@ -63,7 +63,8 @@ const headerStyle = {
     headerTintColor: white,
     headerStyle:{
         backgroundColor: purple
-    }
+    },
+    headerBackTitle:' '
 }
 
 const MainNavigator = StackNavigator({
