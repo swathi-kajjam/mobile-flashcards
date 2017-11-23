@@ -58,9 +58,11 @@ class QuizView extends Component{
     }
 
     onOptionPress=(option) => {
-        const {currentCard, correctlyAnswered} = this.state;
+        const {correctlyAnswered} = this.state;
         if(option === 'yes'){
             this.setState({correctlyAnswered: correctlyAnswered+1})
+        }else{
+            this.setState({correctlyAnswered: correctlyAnswered-1})
         }
     }
 
