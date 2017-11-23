@@ -42,7 +42,7 @@
 
 
 #### API
-    To manage AsyncStorage database, below are the methods provided
+    AsyncStorage will be used as database for this application and below are the methods provided to operate on the data
 
     getDecks -  return all of the decks along with their titles, questions, and answers.
     getDeck - take in a single deckid argument and return the deck associated with that deckid.

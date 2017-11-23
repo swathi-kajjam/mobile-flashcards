@@ -5,6 +5,7 @@ import AppTextInput from './AppTextInput';
 import { saveDeckTitle } from '../utils/api';
 import { connect } from 'react-redux';
 import { createDeck } from '../actions/deckActions';
+import ErrorMessage from './ErrorMessage';
 
 /**
  * @description - Represents new deck view component which allows to create new Deck
@@ -13,17 +14,25 @@ import { createDeck } from '../actions/deckActions';
 class NewDeckView extends Component{
 
     state = {
-        title:''
+        title:'',
+        showTitleError:false
     }
 
     submit=()=>{
+
         const {title} = this.state;
+
+        //Validate Fields
+        if(!title){
+            this.setState({showTitleError:true});
+            return;
+        }
 
         //add to redux
         this.props.dispatch(createDeck(title));
 
         //clear state
-        this.setState({title:''});
+        this.setState({title:'', showTitleError:false});
 
         //redirect to Deck View
         this.props.navigation.navigate(
@@ -36,11 +45,11 @@ class NewDeckView extends Component{
     }
 
     onChangeText = (title) => {
-        this.setState({title})
+        this.setState({title:title.trim()})
     }
 
     render(){
-        const {title} = this.state;
+        const {title, showTitleError} = this.state;
 
         return(
             <View style={styles.container}>
@@ -52,6 +61,7 @@ class NewDeckView extends Component{
                               maxLength = {200}
                               multiline={true}
                 />
+                {showTitleError && <ErrorMessage msg="Please enter title of deck" />}
                 <TextButton onPress={this.submit}> CREATE DECK </TextButton>
             </View>
         )

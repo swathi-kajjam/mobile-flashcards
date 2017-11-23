@@ -5,6 +5,7 @@ import TextButton from "./TextButton";
 import { addingCardToDeck } from '../actions/flashCardActions';
 import AppTextInput from './AppTextInput';
 import { addCardToDeck } from '../utils/api';
+import ErrorMessage from './ErrorMessage';
 
 /**
  * @description - Represents new question view component which allows to create new flash card
@@ -18,15 +19,27 @@ class NewQuestionView extends Component{
     state = {
         title: this.props.title,
         question:'',
-        answer:''
+        answer:'',
+        showQuestionErr:false,
+        showAnswerErr:false
     }
 
     onChangeText = (prop, text) => {
-        this.setState(()=> ({[prop]: text}))
+        this.setState(()=> ({[prop]: text.trim()}))
     }
 
-    onPress = () => {
-        const {title, question, answer} = this.state;
+    onSubmit = () => {
+        let {title, question, answer} = this.state;
+
+        //Validate Fields
+        showQuestionErr = (!question)? true : false;
+        showAnswerErr = (!answer)? true : false;
+
+        if(showQuestionErr || showAnswerErr){
+            this.setState({showQuestionErr, showAnswerErr});
+            return;
+        }
+
         //Question card
         const card = {
             id: Math.random().toString(36).substr(-8),
@@ -38,7 +51,7 @@ class NewQuestionView extends Component{
         this.props.dispatch(addingCardToDeck(title, card))
 
         //clear State
-        this.setState({question:'', answer:''});
+        this.setState({question:'', answer:'', showQuestionErr:false, showAnswerErr:false});
 
         //redirect
         this.props.navigation.goBack();
@@ -49,6 +62,8 @@ class NewQuestionView extends Component{
     }
 
     render(){
+        const {showQuestionErr, showAnswerErr} = this.state;
+
         return (
             <View style={styles.container}>
                 <AppTextInput placeholder="Enter a Question"
@@ -58,6 +73,7 @@ class NewQuestionView extends Component{
                               maxLength = {200}
                               multiline={true}
                 />
+                {showQuestionErr && <ErrorMessage msg="Please enter Question"/>}
                 <AppTextInput placeholder="Enter Answer"
                               style={{width:330}}
                               onChangeText={(text)=>this.onChangeText('answer', text)}
@@ -65,7 +81,8 @@ class NewQuestionView extends Component{
                               maxLength = {300}
                               multiline={true}
                 />
-                <TextButton onPress={this.onPress} >SUBMIT</TextButton>
+                {showAnswerErr && <ErrorMessage msg="Please enter Answer"/>}
+                <TextButton onPress={this.onSubmit} >SUBMIT</TextButton>
             </View>
         )
     }
