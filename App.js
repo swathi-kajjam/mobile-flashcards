@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, StatusBar, Platform, Text } from 'react-native';
+import { StyleSheet, View, StatusBar, Platform } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import DeckListView from './components/DeckListView';
 import NewDeckView from './components/NewDeckView';
@@ -66,7 +66,7 @@ const headerStyle = {
     },
     headerTitleStyle:{
         alignSelf:'center',
-        marginLeft:-40
+        marginLeft: Platform.OS==='ios'?0:-40
     },
     headerBackTitle:' '
 }
