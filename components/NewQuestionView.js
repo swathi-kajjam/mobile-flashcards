@@ -25,11 +25,13 @@ class NewQuestionView extends Component{
     }
 
     onChangeText = (prop, text) => {
-        this.setState(()=> ({[prop]: text.trim()}))
+        this.setState(()=> ({[prop]: text}))
     }
 
     onSubmit = () => {
         let {title, question, answer} = this.state;
+        question = question.trim();
+        answer = answer.trim();
 
         //Validate Fields
         showQuestionErr = (!question)? true : false;

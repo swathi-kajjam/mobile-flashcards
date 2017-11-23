@@ -64,6 +64,10 @@ const headerStyle = {
     headerStyle:{
         backgroundColor: purple
     },
+    headerTitleStyle:{
+        alignSelf:'center',
+        marginLeft:-40
+    },
     headerBackTitle:' '
 }
 

@@ -18,8 +18,15 @@ const styles = StyleSheet.create({
         margin:10,
         marginLeft:30,
         marginRight:30
+    },
+    androidBtn:{
+        padding:10,
+        borderRadius:2,
+        backgroundColor:purple,
+        margin:5
     }
 })
+
 
 /**
  * @description - Represents TextButton Component

@@ -102,7 +102,7 @@ class QuizView extends Component{
                     <View style={styles.center}>
                         <Text style={styles.question}> {displayQuestion ? currentCard.question: currentCard.answer} </Text>
                         <TouchableOpacity onPress={this.onLinkPress}>
-                            <Text style={styles.answer}>{displayQuestion ? 'Answer': 'Question'}</Text>
+                            <Text style={styles.answer}>{displayQuestion ? 'Show Answer': 'Show Question'}</Text>
                         </TouchableOpacity>
                         <TextButton btnStyle={{backgroundColor:'green'}} onPress={()=>this.onOptionPress('yes')}>Correct</TextButton>
                         <TextButton btnStyle={{backgroundColor:'red'}} onPress={()=>this.onOptionPress('no')}>InCorrect</TextButton>
@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     center:{
+       flex:1,
        alignSelf:'center'
     },
     question:{

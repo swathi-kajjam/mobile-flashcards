@@ -41,6 +41,21 @@
     $ yarn start
 
 
+### Running the app
+
+    $ If you have Expo app installed on your phone
+       › Scan the QRCode in Expo App to run the app on your device.For this make sure
+         your phone is on the same network as computer
+    $ If you have simulators setup.You can use one of the below options to run the app
+       › npm run android (Opens app in Android Emulator)
+       › Press a to open Android device or emulator, or Press i to open iOS emulator.
+
+
+### Platforms Tested
+    IOS Device (Iphone 7)
+    Genymotion (Android Emulator)
+
+
 #### API
     AsyncStorage will be used as database for this application and below are the methods provided to operate on the data
 
@@ -55,6 +70,7 @@
     AsyncStorage is used as database to store decks and flashcards information
 
     Below is the shape of AsyncStorage data object
+
     {
       React: {
         title: 'React',

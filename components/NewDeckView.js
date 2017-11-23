@@ -20,7 +20,8 @@ class NewDeckView extends Component{
 
     submit=()=>{
 
-        const {title} = this.state;
+        let {title} = this.state;
+        title = title.trim();
 
         //Validate Fields
         if(!title){
@@ -45,7 +46,7 @@ class NewDeckView extends Component{
     }
 
     onChangeText = (title) => {
-        this.setState({title:title.trim()})
+        this.setState({title:title})
     }
 
     render(){
