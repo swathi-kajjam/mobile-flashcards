@@ -54,7 +54,7 @@
 #### Data
     AsyncStorage is used as database to store decks and flashcards information
 
-    Shape of AsyncStorage data object
+    Below is the shape of AsyncStorage data object
     {
       React: {
         title: 'React',
