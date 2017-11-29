@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import TextButton from './TextButton';
 import AppTextInput from './AppTextInput';
@@ -9,9 +9,9 @@ import ErrorMessage from './ErrorMessage';
 
 /**
  * @description - Represents new deck view component which allows to create new Deck
- * @returns {HTML} - return DOM for creating new Deck
+ * @returns {JSX} - return DOM for creating new Deck
  */
-class NewDeckView extends Component{
+class NewDeckView extends PureComponent{
 
     state = {
         title:'',
@@ -21,10 +21,9 @@ class NewDeckView extends Component{
     submit=()=>{
 
         let {title} = this.state;
-        title = title.trim();
 
         //Validate Fields
-        if(!title){
+        if(!title.trim()){
             this.setState({showTitleError:true});
             return;
         }
@@ -45,9 +44,7 @@ class NewDeckView extends Component{
         saveDeckTitle(title);
     }
 
-    onChangeText = (title) => {
-        this.setState({title:title})
-    }
+    onChangeText = title => this.setState({title});
 
     render(){
         const {title, showTitleError} = this.state;
@@ -69,7 +66,6 @@ class NewDeckView extends Component{
     }
 }
 
-
 const styles = StyleSheet.create({
     container:{
         flex:1,
@@ -81,8 +77,7 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         textAlign:'center'
     }
-})
-
+});
 
 export default connect()(NewDeckView);
 

@@ -37,7 +37,7 @@ export function clearNotification(){
  * @description - Notification template
  * @returns{object} - returns the notification template
  */
-export function createNotification(){
+const createNotification = () => {
     return {
         title: 'complete the quiz',
         body:"👋 don't forget to complete the quiz for today!",

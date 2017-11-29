@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 import { getDecks } from '../utils/api';
 import { receiveDecks } from '../actions/deckActions';
@@ -8,9 +8,9 @@ import { formatData } from '../utils/helpers';
 
 /**
  * @description - Represents deckList component
- * @returns {HTML} - return DOM for displaying all the decks
+ * @returns {JSX} - return DOM for displaying all the decks
  */
-class DeckListView extends Component{
+class DeckListView extends PureComponent{
     state = {
         decks: []
     }
@@ -28,7 +28,7 @@ class DeckListView extends Component{
         )
     }
 
-    renderItem = ({item}) =>{
+    renderItem = ({item}) => {
         return <Deck {...item} key={item.title} onPress={this.onPress} />
     }
 
@@ -46,15 +46,16 @@ class DeckListView extends Component{
     }
 }
 
-const styles = StyleSheet.create({
-    container:{
-        flex:1
-    }
-})
-
 const mapStateToProps = (state) => {
     return {
         decks: formatData(state.deckReducer.byId)
     }
 }
+
+const styles = StyleSheet.create({
+    container:{
+        flex:1
+    }
+});
+
 export default connect(mapStateToProps)(DeckListView);

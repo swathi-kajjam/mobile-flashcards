@@ -2,6 +2,18 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
 import { purple, white } from "../utils/colors";
 
+/**
+ * @description - Represents TextButton Component
+ * @returns {JSX} - return DOM for creating TextButton
+ */
+export default function TextButton({onPress, children, textStyle = {}, btnStyle={}}){
+    return (
+        <TouchableOpacity style={[Platform.OS==='ios'? styles.iosBtn : styles.androidBtn, btnStyle]} onPress={onPress}>
+            <Text style={[styles.text, textStyle]}> {children} </Text>
+        </TouchableOpacity>
+    )
+}
+
 const styles = StyleSheet.create({
     text:{
         color:'white',
@@ -25,18 +37,5 @@ const styles = StyleSheet.create({
         backgroundColor:purple,
         margin:5
     }
-})
-
-
-/**
- * @description - Represents TextButton Component
- * @returns {HTML} - return DOM for creating TextButton
- */
-export default function TextButton({onPress, children, textStyle = {}, btnStyle={}}){
-    return (
-        <TouchableOpacity style={[Platform.OS==='ios'? styles.iosBtn : styles.androidBtn, btnStyle]} onPress={onPress}>
-            <Text style={[styles.text, textStyle]}> {children} </Text>
-        </TouchableOpacity>
-    )
-}
+});
 

@@ -1,16 +1,13 @@
-import React, { Component } from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Animated} from 'react-native';
+import React, { PureComponent } from 'react';
+import {Text, StyleSheet, TouchableOpacity, Animated} from 'react-native';
 
 /**
  * @description - Represents deck component
- * @returns {HTML} - return DOM for displaying deck
+ * @returns {JSX} - return DOM for displaying deck
  */
-class Deck extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            spinValue: new Animated.Value(0)
-        }
+class Deck extends PureComponent{
+    state = {
+        spinValue: new Animated.Value(0)
     }
 
     onPress = (title) => {

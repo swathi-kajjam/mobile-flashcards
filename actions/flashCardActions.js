@@ -1,7 +1,9 @@
-import * as ActionTypes from './actionTypes';
+import * as actionTypes from './actionTypes';
 
 export const addingCardToDeck = (title, card) =>({
-    type: ActionTypes.ADD_CARD_TO_DECK,
-    title,
-    card
+    type: actionTypes.ADD_CARD_TO_DECK,
+    payload:{
+        title,
+        card
+    }
 })

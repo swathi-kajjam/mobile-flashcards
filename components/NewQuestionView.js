@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import TextButton from "./TextButton";
@@ -9,9 +9,9 @@ import ErrorMessage from './ErrorMessage';
 
 /**
  * @description - Represents new question view component which allows to create new flash card
- * @returns {HTML} - return DOM for creating new question
+ * @returns {JSX} - return DOM for creating new question
  */
-class NewQuestionView extends Component{
+class NewQuestionView extends PureComponent{
     static navigationOptions = {
         title: 'ADD CARD'
     }
@@ -24,18 +24,19 @@ class NewQuestionView extends Component{
         showAnswerErr:false
     }
 
-    onChangeText = (prop, text) => {
-        this.setState(()=> ({[prop]: text}))
-    }
+    onChangeText = (prop, text) => this.setState({[prop]: text});
+
 
     onSubmit = () => {
-        let {title, question, answer} = this.state;
-        question = question.trim();
-        answer = answer.trim();
+        const {
+               title,
+               question,
+               answer
+              } = this.state;
 
         //Validate Fields
-        showQuestionErr = (!question)? true : false;
-        showAnswerErr = (!answer)? true : false;
+        showQuestionErr = !question.trim();
+        showAnswerErr = !answer.trim();
 
         if(showQuestionErr || showAnswerErr){
             this.setState({showQuestionErr, showAnswerErr});
@@ -64,7 +65,7 @@ class NewQuestionView extends Component{
     }
 
     render(){
-        const {showQuestionErr, showAnswerErr} = this.state;
+        const { showQuestionErr, showAnswerErr} = this.state;
 
         return (
             <View style={styles.container}>
@@ -90,6 +91,11 @@ class NewQuestionView extends Component{
     }
 }
 
+const mapStateToProps = (_, {navigation}) => {
+    return{
+        title: navigation.state.params.title
+    }
+}
 
 const styles = StyleSheet.create({
     container:{
@@ -100,14 +106,6 @@ const styles = StyleSheet.create({
     text:{
         width:330
     }
-})
-
-
-const mapStateToProps = (state, {navigation}) => {
-    const {title} = navigation.state.params;
-    return{
-        title
-    }
-}
+});
 
 export default connect(mapStateToProps)(NewQuestionView)

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import { connect } from 'react-redux';
 import TextButton from './TextButton';
@@ -6,9 +6,9 @@ import { getDeck } from "../utils/helpers";
 
 /**
  * @description - Represents individual deck view component
- * @returns {HTML} - return DOM for displaying deck information along with options to startQuiz / Add Question
+ * @returns {JSX} - return DOM for displaying deck information along with options to startQuiz / Add Question
  */
-class IndividualDeckView extends Component{
+class IndividualDeckView extends PureComponent{
 
     static navigationOptions = ({navigation}) => {
         const {title} = navigation.state.params;
@@ -56,7 +56,6 @@ class IndividualDeckView extends Component{
 
 const mapStateToProps = (state, {navigation}) => {
     const {title} = navigation.state.params;
-
     return{
         title,
         deck: getDeck(state.deckReducer.byId, title)
@@ -83,6 +82,6 @@ const styles = StyleSheet.create({
     quizBtn:{
         backgroundColor:'gray'
     }
-})
+});
 
 export default connect(mapStateToProps)(IndividualDeckView)

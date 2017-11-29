@@ -1,7 +1,9 @@
-import * as ActionTypes from '../actions/actionTypes';
+import * as actionTypes from '../actions/actionTypes';
 import { combineReducers } from 'redux';
 
-function addDeckEntry(state, title){
+function addDeckEntry(state, payload){
+    const {title} = payload;
+
     return {
         ...state,
         [title] : {
@@ -11,7 +13,9 @@ function addDeckEntry(state, title){
     };
 }
 
-function addCardToDeck(state, title, card){
+function addCardToDeck(state, payload){
+    const {title, card} = payload;
+
     const deck = state[title];
     const questions = deck.questions || [];
 
@@ -26,30 +30,36 @@ function addCardToDeck(state, title, card){
 
 
 function decksById(state = {}, action){
+    const {payload} = action;
+
     switch(action.type){
-        case ActionTypes.CREATE_DECK:
-            return addDeckEntry(state, action.title)
-        case ActionTypes.RECEIVE_DECKS:
-            const {decks} = action;
+        case actionTypes.CREATE_DECK:
+            return addDeckEntry(state, payload)
+        case actionTypes.RECEIVE_DECKS:
+            const {decks} = payload;
             state = decks;
             return state;
-        case ActionTypes.ADD_CARD_TO_DECK:
-            return addCardToDeck(state, action.title, action.card)
+        case actionTypes.ADD_CARD_TO_DECK:
+            return addCardToDeck(state, payload)
         default:
             return state;
     }
 }
 
-
 function allDecks(state=[], action){
+    const {payload} = action;
+
     switch(action.type) {
-        case ActionTypes.CREATE_DECK:
-           return [...state, action.title]
-        case ActionTypes.RECEIVE_DECKS:
-            const {decks} = action;
+        case actionTypes.CREATE_DECK:
+           const {title} = payload;
+
+           return [...state, title]
+        case actionTypes.RECEIVE_DECKS:
+            const {decks} = payload;
+
             Object.keys(decks).forEach(key => {
                  state.push(key)
-            })
+            });
             return state;
         default:
             return state;

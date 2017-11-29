@@ -1,11 +1,15 @@
-import * as ActionTypes from './actionTypes';
+import * as actionTypes from './actionTypes';
 
 export const createDeck = (title) => ({
-    type: ActionTypes.CREATE_DECK,
-    title
+    type: actionTypes.CREATE_DECK,
+    payload:{
+        title
+    }
 });
 
 export const receiveDecks = (decks) => ({
-    type: ActionTypes.RECEIVE_DECKS,
-    decks
+    type: actionTypes.RECEIVE_DECKS,
+    payload:{
+        decks
+    }
 })

@@ -1,29 +1,39 @@
-import * as ActionTypes from '../actions/actionTypes';
+import * as actionTypes from '../actions/actionTypes';
 import { combineReducers } from 'redux';
 
 
-function addQuestion(state, title, card){
-    const { id } = card
-    const question = {id:id, question:card.question, answer: card.answer}
+function addQuestion(state, payload){
+
+    const {card} = payload;
+    const {id, question, answer} = card;
+
+    const newQuestion = {id, question, answer}
+
     return {
         ...state,
-        [id]:question
+        [id]:newQuestion
     }
 }
 
-const questionById = (state={}, action) =>{
+const questionById = (state={}, action) => {
+    const {payload} = action;
+
     switch(action.type){
-        case ActionTypes.ADD_CARD_TO_DECK:
-            return addQuestion(state, action.title, action.card)
+        case actionTypes.ADD_CARD_TO_DECK:
+            return addQuestion(state, payload)
         default:
             return state;
     }
 }
 
 const allQuestions = (state=[], action) => {
+    const {payload} = action;
+
     switch(action.type){
-        case ActionTypes.ADD_CARD_TO_DECK:
-            return [...state, action.card.id];
+        case actionTypes.ADD_CARD_TO_DECK:
+            const {card} = payload;
+
+            return [...state, card.id];
         default:
             return state;
     }

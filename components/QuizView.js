@@ -1,11 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { getDeck } from '../utils/api';
 import { connect } from 'react-redux';
 import TextButton from './TextButton';
 import { clearNotification, setLocalNotification } from '../utils/helpers';
 
-class QuizView extends Component{
+/**
+ * @description - Represents Quiz View Component
+ * @returns {JSX} - return DOM for Quiz View
+ */
+class QuizView extends PureComponent{
     static navigationOptions = {
         title: 'QUIZ'
     }
@@ -42,32 +46,44 @@ class QuizView extends Component{
         }))
     }
 
-    onPressNext=() => {
-        let {currentCardNbr, deck} = this.state;
+    onOptionPress=(option) => {
+        let {
+              correctlyAnswered,
+              currentCardNbr,
+              deck
+             } = this.state;
+
+        correctlyAnswered = option === 'yes'? correctlyAnswered+1 : correctlyAnswered;
 
         if(currentCardNbr < deck.questions.length){
+
             const currentCard = deck.questions[currentCardNbr];
             currentCardNbr = currentCardNbr+1;
-            this.setState({currentCardNbr, currentCard, displayQuestion:true})
+            this.setState({
+                           currentCardNbr,
+                           currentCard,
+                           displayQuestion:true,
+                           correctlyAnswered
+                          });
         }
         else{
-            this.setState({displayScoreCard:true});
+
+            this.setState({
+                            displayScoreCard:true,
+                            correctlyAnswered
+                          });
+
             clearNotification();
             setLocalNotification();
         }
     }
 
-    onOptionPress=(option) => {
-        const {correctlyAnswered} = this.state;
-        if(option === 'yes'){
-            this.setState({correctlyAnswered: correctlyAnswered+1})
-        }else{
-            this.setState({correctlyAnswered: correctlyAnswered-1})
-        }
-    }
-
     displayScore=() => {
-        const {totalCards, correctlyAnswered} = this.state;
+        const {
+                totalCards,
+                correctlyAnswered
+              } = this.state;
+
         return parseInt((correctlyAnswered/totalCards)*100);
     }
 
@@ -89,7 +105,14 @@ class QuizView extends Component{
     }
 
     render(){
-        const { currentCard, totalCards, currentCardNbr, displayQuestion, displayScoreCard, correctlyAnswered } = this.state;
+        const { currentCard,
+                totalCards,
+                currentCardNbr,
+                displayQuestion,
+                displayScoreCard,
+                correctlyAnswered
+              } = this.state;
+
         return(
             displayScoreCard ?
                 <View style={styles.scoreCard}>
@@ -108,10 +131,15 @@ class QuizView extends Component{
                         </TouchableOpacity>
                         <TextButton btnStyle={{backgroundColor:'green'}} onPress={()=>this.onOptionPress('yes')}>Correct</TextButton>
                         <TextButton btnStyle={{backgroundColor:'red'}} onPress={()=>this.onOptionPress('no')}>InCorrect</TextButton>
-                        <TextButton btnStyle={{backgroundColor:'gray'}} onPress={this.onPressNext}>Next</TextButton>
                     </View>
                 </View>
         )
+    }
+}
+
+const mapStateToProps = (_, {navigation}) => {
+    return {
+        title: navigation.state.params.title
     }
 }
 
@@ -129,8 +157,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     center:{
-       flex:1,
-       alignSelf:'center'
+        flex:1,
+        alignSelf:'center'
     },
     question:{
         fontSize:26,
@@ -155,14 +183,7 @@ const styles = StyleSheet.create({
         color:'gray',
         paddingTop:20
     }
-})
-
-const mapStateToProps = (state, {navigation}) => {
-    const {title} = navigation.state.params;
-    return {
-        title
-    }
-}
+});
 
 export default connect(mapStateToProps)(QuizView);
 

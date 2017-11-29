@@ -2,6 +2,17 @@ import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 import { gray } from "../utils/colors";
 
+/**
+ * @description - Represents TextInput Component
+ * @returns {JSX} - return DOM for Text Input
+ */
+export default function AppTextInput(props){
+    return (
+        <TextInput  {...props} style={[styles.text,props.style]}
+        />
+    )
+}
+
 const styles = StyleSheet.create({
     text:{
         margin: 20,
@@ -12,15 +23,4 @@ const styles = StyleSheet.create({
         padding:5,
         fontSize:14
     }
-})
-
-/**
- * @description - Represents TextInput Component
- * @returns {HTML} - return DOM for Text Input
- */
-export default function AppTextInput(props){
-    return (
-        <TextInput  {...props} style={[styles.text,props.style]}
-        />
-    )
-}
+});
